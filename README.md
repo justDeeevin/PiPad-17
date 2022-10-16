@@ -53,6 +53,8 @@ If you want to change what key a certain pin activates, change its corresponding
 Any USB device has a hardware-limited number of USB endpoints—essentially the number of 'devices' it can act as. You could have a keyboard *and* a mouse in a single USB connection, it would just use two USB endpoints. The Blackpill only has 2 accessible endpoints, and when working in a standard CircuitPython environment, both of these endpoints are taken up by the CIRCUITPY drive and the command line REPL. In `boot.py`, I have disabled the REPL. ***IF YOU ARE EDITING THE CODE, YOU CANNOT ACTIVATE THE COMMAND LINE REPL. THIS WILL MAKE THE KEYBOARD NOT WORK, AND WILL BREAK THE CODE.***
 
 ## Circuit Board
-The circuit board design that I used for this code is currently not available online. I will be making a github repo with the KiCAD files soon.
+A repo with the KiCAD designs that I used for my πPad can be found [here](https://github.com/ThePyroTF2/PiPad-17-KiCAD).
+## Case
+I have not yet designed or created a case for the πPad, but when I have, I will make a repo for it and link it here.
 ## Getting your blackpill
 The official place to buy the blackpill is [here](https://www.aliexpress.com/item/3256801269871873.html?pdp_ext_f=%7B%22sku_id%22%3A%2212000016817645221%22%2C%22ship_from%22%3A%22CN%22%7D&gps-id=pcStoreLeaderboard&scm=1007.22922.271278.0&scm_id=1007.22922.271278.0&scm-url=1007.22922.271278.0&pvid=b818ad59-4996-4257-b00c-34d06a5cf093&spm=a2g0o.store_pc_home.smartLeaderboard_6000147819209.1005001456186625&gatewayAdapt=4itemAdapt). You'll need female headers to connect the pins to, and some solder, an iron, and a bit of prior soldering practice in order to attach the Blackpill to the PCB.
