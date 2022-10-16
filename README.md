@@ -25,7 +25,7 @@ There aren't any straightforward guides for installation without an STLINK onlin
 
 Unfortunately, there's simply no space on the board for a git repository, so you can't just clone this. You'll need to download and move [`code.py`](https://github.com/ThePyroTF2/PiPad-17/blob/main/code.py), [`boot.py`](https://github.com/ThePyroTF2/PiPad-17/blob/main/boot.py), and the contents of the [`lib`](https://github.com/ThePyroTF2/PiPad-17/tree/main/lib) folder onto the CIRCUITPY drive manually (put the contents of `lib` into a folder by that name on the drive). Push the `NRST` button to reset your board, and your numpad should work!
 ## Messing with the code
-Currently, the CIRCUITPY drive is automatically exposed on plugin. I will make it so that this will only happen when the `KEY` button is being pressed on startup.
+In order to expose the CIRCUITPY drive, you must hold down the num lock key while the keyboard is restarting.
 
 The following is some information on the code. There are comments in the file that do a similar amount of explaining, but I might as well do it both here and there.
 ### Editable Parameters
