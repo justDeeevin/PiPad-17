@@ -14,21 +14,30 @@ fn main() -> ! {
         pac::Peripherals::take(),
         cortex_m::peripheral::Peripherals::take(),
     ) {
+        // Set up the system clock
+        // let rcc = dp.RCC.constrain();
+        // let clocks = rcc
+        //     .cfgr
+        //     .use_hse(25.MHz())
+        //     .sysclk(100.MHz())
+        //     .hclk(25.MHz())
+        //     .freeze();
+
         // LED on Black Pill is on pin C13
         let gpioc = dp.GPIOC.split();
         let mut led = gpioc.pc13.into_push_pull_output();
 
-        // Set up the system clock to run at 100MHz
-        let rcc = dp.RCC.constrain();
-        let clocks = rcc.cfgr.sysclk(100.MHz()).freeze();
-
         // Delay provider
-        let mut delay = cp.SYST.delay(&clocks);
+        // let mut delay = cp.SYST.delay(&clocks);
 
-        loop {
-            led.toggle();
-            delay.delay_ms(1000_u32);
-        }
+        led.set_low();
+        // delay.delay_ms(2000_u32);
+
+        // loop {
+        //     led.set_high();
+        //     delay.delay_ms(1000_u32);
+        //     led.set_low();
+        // }
     }
 
     loop {}
