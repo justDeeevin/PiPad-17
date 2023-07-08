@@ -1,6 +1,21 @@
+[target.thumbv7m-none-eabi]
+# uncomment this to make `cargo run` execute programs on QEMU
+# runner = "qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -semihosting-config enable=on,target=native -kernel"
+
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+# uncomment ONE of these three option to make `cargo run` start a GDB session
+# which option to pick depends on your system
+# runner = "arm-none-eabi-gdb -q -x jlink.gdb"
+# runner = "arm-none-eabi-gdb -q -x openocd.gdb"
+# runner = "gdb-multiarch -q -x openocd.gdb"
+# runner = "gdb -q -x openocd.gdb"
+#runner = "probe-run --chip STM32F401CEUx"
+runner = "probe-run --chip STM32F411CEUx"
+
 rustflags = [
     # LLD (shipped with the Rust toolchain) is used as the default linker
-    "-C", "link-arg=-Tlink.x",
+    "-C",
+    "link-arg=-Tlink.x",
 
     # if you run into problems with LLD switch to the GNU linker by commenting out
     # this line
@@ -17,10 +32,14 @@ rustflags = [
     # "-Z", "force-overflow-checks=off",
     # This lets us see if we run out of memory by giving a stack overflow
     # message on the debugger rather than siliently hanging:
-    "-C", "linker=flip-link",
-    "-Z", "trap-unreachable=no",
-    "-C", "inline-threshold=5",
-    "-C", "no-vectorize-loops",
+    "-C",
+    "linker=flip-link",
+    "-Z",
+    "trap-unreachable=no",
+    "-C",
+    "inline-threshold=5",
+    "-C",
+    "no-vectorize-loops",
 ]
 
 [build]

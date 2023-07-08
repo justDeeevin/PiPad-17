@@ -9,6 +9,13 @@ edition = "2021"
 stm32f4xx-hal = { version = "0.16.2", features = ["stm32f411"] }
 cortex-m-rt = "0.7.3"
 panic-halt = "0.2.0"
-cortex-m = "0.7.7"
-nb = "1.1.0"
 embedded-hal = "0.2.7"
+nb = "1.1.0"
+cortex-m = "0.7.7"
+
+
+[profile.dev]
+debug = 1
+
+[profile.release]
+debug = 1

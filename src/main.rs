@@ -1,12 +1,17 @@
+//! Demonstrate the use of a blocking `Delay` using the SYST (sysclock) timer.
+
 #![deny(unsafe_code)]
 #![allow(clippy::empty_loop)]
 #![no_main]
 #![no_std]
 
-use crate::hal::{pac, prelude::*};
+// Halt on panic
+use panic_halt as _; // panic handler
+
 use cortex_m_rt::entry;
-use panic_halt as _;
 use stm32f4xx_hal as hal;
+
+use crate::hal::{pac, prelude::*};
 
 #[entry]
 fn main() -> ! {
@@ -14,30 +19,22 @@ fn main() -> ! {
         pac::Peripherals::take(),
         cortex_m::peripheral::Peripherals::take(),
     ) {
-        // Set up the system clock
-        // let rcc = dp.RCC.constrain();
-        // let clocks = rcc
-        //     .cfgr
-        //     .use_hse(25.MHz())
-        //     .sysclk(100.MHz())
-        //     .hclk(25.MHz())
-        //     .freeze();
+        // Set up the LED. On the Nucleo-446RE it's connected to pin PA5.
+        let gpioa = dp.GPIOC.split();
+        let mut led = gpioa.pc13.into_push_pull_output();
 
-        // LED on Black Pill is on pin C13
-        let gpioc = dp.GPIOC.split();
-        let mut led = gpioc.pc13.into_push_pull_output();
+        // Set up the system clock. We want to run at 48MHz for this one.
+        let rcc = dp.RCC.constrain();
+        let clocks = rcc.cfgr.sysclk(100.MHz()).freeze();
 
-        // Delay provider
-        // let mut delay = cp.SYST.delay(&clocks);
+        // Create a delay abstraction based on SysTick
+        let mut delay = cp.SYST.delay(&clocks);
 
-        led.set_low();
-        // delay.delay_ms(2000_u32);
-
-        // loop {
-        //     led.set_high();
-        //     delay.delay_ms(1000_u32);
-        //     led.set_low();
-        // }
+        loop {
+            // On for 1s, off for 1s.
+            led.toggle();
+            delay.delay_ms(1000_u32);
+        }
     }
 
     loop {}
