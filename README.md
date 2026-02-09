@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This is old and doesn't work. A total embassy-rs-based overhaul is in the works at https://github.com/justdeeevin/pipad
+
 # πPad 17 Firmware
 This repo contains the code for the πPad 17: a numberpad based off of [Riskable](https://github.com/Riskable)'s [Riskeyboard 70](https://github.com/riskable/riskeyboard70), and designed for use with his 3d-printed [Void Switches](https://github.com/Riskable/void_switch). It uses hall effect sensors for analog input. The current version of the code only allows on/off signals for the keys, though I will look into making settings accessable on the PC that can change how to handle analog signals. It uses Circuitpython with the STM32F411ce Black Pill without flash (although it should work on the model with flash; just make sure to install the right version of CircuitPython).
 ## Making it work
